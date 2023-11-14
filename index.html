@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        .tooltip {
+            position: absolute;
+            background: white;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            pointer-events: none;
+            opacity: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="width:700px; height:500px;">
+        <center>
+            <h3 style="color:black">Interactive World Map</h3>
+        </center>
+        <svg width="600" height="450"></svg>
+        <div class="tooltip"></div>
+    </div>
+
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
+    <script>
+        var colorScale = d3.scaleLinear()
+            .domain([0, 70])
+            .range(["black", "red"]);
+
+        var svg = d3.select("svg"),
+            width = +svg.attr("width"),
+            height = +svg.attr("height");
+
+        var gfg = d3.geoNaturalEarth1()
+            .scale(width / 1.8 / Math.PI)
+            .rotate([0, 0])
+            .center([0, 0])
+            .translate([width / 2, height / 2]);
+
+        var tooltip = d3.select(".tooltip");
+
+        d3.csv("https://raw.githubusercontent.com/ayagh-official/dataviz/master/Food_Poverty_test.csv", function (csvData) {
+            var dataMap = d3.map(csvData, function (d) { return d.Country; });
+
+            d3.json("https://raw.githubusercontent.com/janasayantan/datageojson/master/world.json", function (worldData) {
+                svg.append("g")
+                    .selectAll("path")
+                    .data(worldData.features)
+                    .enter().append("path")
+                    .attr("fill", function (d) {
+                        var country = d.properties.name;
+                        var value = dataMap.get(country) ? +dataMap.get(country).Value : null;
+                        return colorScale(value);
+                    })
+                    .attr("d", d3.geoPath().projection(gfg))
+                    .style("stroke", "#ff66")
+                    .on("mouseover", function (event, d) {
+                        var country = d.properties.name;
+                        var value = dataMap.get(country) ? +dataMap.get(country).Value : "N/A";
+
+                        tooltip.transition()
+                            .duration(200)
+                            .style("opacity", .9);
+
+                        tooltip.html("<strong>" + country + "</strong><br>Value: " + value)
+                            .style("left", (event.pageX + 10) + "px")
+                            .style("top", (event.pageY - 20) + "px");
+                    })
+                    .on("mouseout", function () {
+                        tooltip.transition()
+                            .duration(500)
+                            .style("opacity", 0);
+                    })
+                    .transition()
+                    .duration(1000)
+                    .attr("fill", function (d) {
+                        var country = d.properties.name;
+                        var value = dataMap.get(country) ? +dataMap.get(country).Value : null;
+                        return colorScale(value);
+                    });
+            });
+        });
+    </script>
+</body>
+
+</html>
