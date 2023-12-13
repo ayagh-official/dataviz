@@ -19,7 +19,7 @@ const height = 920 - margin.top - margin.bottom
 //Create the initial visualisation
 
 
-d3.csv('https://ayagh-official.github.io/dataviz/data/Food_Pov8.csv', function(d){
+d3.csv('https://ayagh-official.github.io/dataviz/data_dir/Food_Pov8.csv', function(d){
     return {
         Major: d.Major,
         Total: +d.Total,
