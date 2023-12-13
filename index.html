@@ -1,0 +1,72 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src = 'd3.js'></script>
+    <script src = 'https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.min.js'></script>
+
+    <meta property='og:title' content='Best College Majors'/>
+    <meta property='og:image' content='https://github.com/cuthchow/college-majors-visualisation/blob/master/preview.png'/>
+    <meta property='og:description' content='This interactive, scrollable data visualisation will take you on a journey through all of the different college majors in the United States, and compare how they stack up in terms of median graduate salary, gender ratios, employability, and other factors. '/>
+    <meta property='og:url' content='https://cuthchow.github.io/college-majors-visualisation/'/>
+
+
+    <title>Unicef Severe Food Poverty Analysis</title>
+</head>
+
+
+<body>
+    <!-- <div id="info">
+        a
+    </div> -->
+    <div id="tooltip"></div>
+    <div id="graphic">
+        <div id="sections">
+            <section class="step">
+                <!-- <img src='./th0.jpg' alt="Cover Image" style="width: 400px; height: 500px;"> -->
+                <div class="title"></div>
+                <br><br>
+                <h1 style='text-align: left;'>National & <br>Male to Female Ratios for food poverty</h1>
+                <p>By <a style='color:#da5898;' href = 'https://ayagh-official.github.io/dataviz'>Alireza Yaghoobi</a></p>
+                <p>
+                Most scientists are keenly interested in understanding the prevalence of severe food poverty across diverse countries within various UN regions. This comprehensive analysis categorizes countries based on the severity of food poverty, utilizing the x-axis to represent national poverty percentages and the y-axis to depict the frequency repetition for each data point. The resulting graph offers a nuanced ranking of countries, providing a detailed insight into the distribution of severe food poverty. To explore exhaustive details about a specific data point, simply hover over the corresponding section, and a tooltip will appear, offering additional information. 
+                <br><br>It's crucial to note that this data, compiled by UNICEF in 2021 and shared for public use, serves as a valuable resource for understanding the intricate landscape of severe food poverty across different regions
+                </p>
+                
+            </section>
+            
+            <section class = 'step'>
+                <svg id = 'legend' width = '400px' height = '300px'></svg>
+                <br><br>
+                This plot depucts ech point to a corresponding specific country. The legend colors are indicative of the respective UN region to facilitate a comprehensive examination of the prevalence of nationwide food poverty across continents.
+                <br>To streamline the presentation and enhance visual clarity, a legend has been incorporated into the map, assigning unique colors to each UN region. This strategic color-coding allows for an immediate and intuitive understanding of the geographic distribution of food poverty frequencies.
+            </section>
+            
+            
+            
+            <section class="step">
+                <h1 style='text-align:left;'>Male vs Female <br>Food Poverty </h1>
+                <p>
+                    The plot depicts a comparative analysis of gender ratios within a sample size drawn from nationwide data concerning food poverty in a specific country. Nations exhibiting gender ratios ranging from 49% to 51% are considered balanced and are positioned centrally on the plot. On the left-hand side, countries with higher female ratios are represented, while those with higher male ratios under food poverty are indicated on the right-hand side with a square symbol. Additionally, as one ascends on the plot, the prevalence of severe food poverty increases, with nations situated on the upper portion experiencing more pronounced challenges in this regard.<br>
+                    <p style="text-align: left;">I've also doucmented a full page on how developed these plots. </p><a style="text-align: left;" href = 'https://github.com/ayagh-official/dataviz'>Here!</a>.
+                    <svg id = 'legend3' width = '400px' height = '450px'></svg><br><br>
+                </p>
+                <span></span><span></span><span></span>                
+            </section>
+           
+
+        </div>
+        <div id="vis">
+
+        </div>
+    </div>
+
+    
+
+    
+    <script src = 'scroller.js'></script>
+    <script src = 'sections.js'></script>
+
+</body>
+</html>
